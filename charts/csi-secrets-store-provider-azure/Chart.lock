@@ -1,0 +1,6 @@
+dependencies:
+- name: csi-secrets-store-provider-azure
+  repository: https://raw.githubusercontent.com/Azure/secrets-store-csi-driver-provider-azure/master/charts
+  version: 0.2.0
+digest: sha256:1550e6f26f6f846d4c4a4eb128eba3979641c0ddc50f18f2aa323e3990de9fe4
+generated: "2022-04-22T10:41:55.75907794+02:00"

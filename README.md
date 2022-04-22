@@ -1,1 +1,1 @@
-# devops-stack-module-secret-store-csi-driver
+# devops-stack-module-csi-secrets-store-provider-azure
