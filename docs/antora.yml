@@ -1,0 +1,7 @@
+---
+name: "csi-secrets-store-provider-azure"
+title: "Secrets Store CSI Driver Module"
+version: true
+start_page: README.adoc
+nav:
+  - "modules/ROOT/nav.adoc"
