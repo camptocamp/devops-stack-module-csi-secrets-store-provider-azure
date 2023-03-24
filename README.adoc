@@ -1,7 +1,5 @@
 // BEGIN_TF_DOCS
-=== Requirements
 
-No requirements.
 
 === Providers
 
@@ -9,13 +7,7 @@ The following providers are used by this module:
 
 - [[provider_argocd]] <<provider_argocd,argocd>>
 
-- [[provider_null]] <<provider_null,null>>
-
 - [[provider_utils]] <<provider_utils,utils>>
-
-=== Modules
-
-No modules.
 
 === Resources
 
@@ -23,8 +15,6 @@ The following resources are used by this module:
 
 - https://registry.terraform.io/providers/oboukili/argocd/latest/docs/resources/application[argocd_application.this] (resource)
 - https://registry.terraform.io/providers/oboukili/argocd/latest/docs/resources/project[argocd_project.this] (resource)
-- https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource[null_resource.dependencies] (resource)
-- https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource[null_resource.this] (resource)
 - https://registry.terraform.io/providers/cloudposse/utils/latest/docs/data-sources/deep_merge_yaml[utils_deep_merge_yaml.values] (data source)
 
 === Required Inputs
@@ -37,61 +27,9 @@ Description: n/a
 
 Type: `string`
 
-==== [[input_base_domain]] <<input_base_domain,base_domain>>
-
-Description: Principal default domain
-
-Type: `string`
-
-==== [[input_cluster_name]] <<input_cluster_name,cluster_name>>
-
-Description: n/a
-
-Type: `string`
-
 === Optional Inputs
 
 The following input variables are optional (have default values):
-
-==== [[input_app_autosync]] <<input_app_autosync,app_autosync>>
-
-Description: Automated sync options for the Argo CD Application resource.
-
-Type:
-[source,hcl]
-----
-object({
-    allow_empty = optional(bool)
-    prune       = optional(bool)
-    self_heal   = optional(bool)
-  })
-----
-
-Default:
-[source,json]
-----
-{
-  "allow_empty": false,
-  "prune": true,
-  "self_heal": true
-}
-----
-
-==== [[input_deep_merge_append_list]] <<input_deep_merge_append_list,deep_merge_append_list>>
-
-Description: A boolean flag to enable/disable appending lists instead of overwriting them.
-
-Type: `bool`
-
-Default: `false`
-
-==== [[input_dependency_ids]] <<input_dependency_ids,dependency_ids>>
-
-Description: n/a
-
-Type: `map(string)`
-
-Default: `{}`
 
 ==== [[input_helm_values]] <<input_helm_values,helm_values>>
 
@@ -107,23 +45,15 @@ Description: n/a
 
 Type: `string`
 
-Default: `"cert-manager"`
-
-==== [[input_target_revision]] <<input_target_revision,target_revision>>
-
-Description: Override of target revision of the application chart.
-
-Type: `string`
-
-Default: `"v1.0.0-alpha.5"`
+Default: `"csi-secrets-store-provider-azure"`
 
 === Outputs
 
 The following outputs are exported:
 
-==== [[output_id]] <<output_id,id>>
+==== [[output_helm_values]] <<output_helm_values,helm_values>>
 
-Description: n/a
+Description: Helm values applied to the module's chart
 // END_TF_DOCS
 // BEGIN_TF_TABLES
 
@@ -134,7 +64,6 @@ Description: n/a
 |===
 |Name |Version
 |[[provider_argocd]] <<provider_argocd,argocd>> |n/a
-|[[provider_null]] <<provider_null,null>> |n/a
 |[[provider_utils]] <<provider_utils,utils>> |n/a
 |===
 
@@ -145,8 +74,6 @@ Description: n/a
 |Name |Type
 |https://registry.terraform.io/providers/oboukili/argocd/latest/docs/resources/application[argocd_application.this] |resource
 |https://registry.terraform.io/providers/oboukili/argocd/latest/docs/resources/project[argocd_project.this] |resource
-|https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource[null_resource.dependencies] |resource
-|https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource[null_resource.this] |resource
 |https://registry.terraform.io/providers/cloudposse/utils/latest/docs/data-sources/deep_merge_yaml[utils_deep_merge_yaml.values] |data source
 |===
 
@@ -155,61 +82,11 @@ Description: n/a
 [cols="a,a,a,a,a",options="header,autowidth"]
 |===
 |Name |Description |Type |Default |Required
-|[[input_app_autosync]] <<input_app_autosync,app_autosync>>
-|Automated sync options for the Argo CD Application resource.
-|
-
-[source]
-----
-object({
-    allow_empty = optional(bool)
-    prune       = optional(bool)
-    self_heal   = optional(bool)
-  })
-----
-
-|
-
-[source]
-----
-{
-  "allow_empty": false,
-  "prune": true,
-  "self_heal": true
-}
-----
-
-|no
-
 |[[input_argocd_namespace]] <<input_argocd_namespace,argocd_namespace>>
 |n/a
 |`string`
 |n/a
 |yes
-
-|[[input_base_domain]] <<input_base_domain,base_domain>>
-|Principal default domain
-|`string`
-|n/a
-|yes
-
-|[[input_cluster_name]] <<input_cluster_name,cluster_name>>
-|n/a
-|`string`
-|n/a
-|yes
-
-|[[input_deep_merge_append_list]] <<input_deep_merge_append_list,deep_merge_append_list>>
-|A boolean flag to enable/disable appending lists instead of overwriting them.
-|`bool`
-|`false`
-|no
-
-|[[input_dependency_ids]] <<input_dependency_ids,dependency_ids>>
-|n/a
-|`map(string)`
-|`{}`
-|no
 
 |[[input_helm_values]] <<input_helm_values,helm_values>>
 |Helm values, passed as a list of HCL structures.
@@ -220,13 +97,7 @@ object({
 |[[input_namespace]] <<input_namespace,namespace>>
 |n/a
 |`string`
-|`"cert-manager"`
-|no
-
-|[[input_target_revision]] <<input_target_revision,target_revision>>
-|Override of target revision of the application chart.
-|`string`
-|`"v1.0.0-alpha.5"`
+|`"csi-secrets-store-provider-azure"`
 |no
 
 |===
@@ -236,6 +107,6 @@ object({
 [cols="a,a",options="header,autowidth"]
 |===
 |Name |Description
-|[[output_id]] <<output_id,id>> |n/a
+|[[output_helm_values]] <<output_helm_values,helm_values>> |Helm values applied to the module's chart
 |===
 // END_TF_TABLES
